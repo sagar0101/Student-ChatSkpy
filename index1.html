@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <title>Student Chatskpy</title>
+    <style>
+      /* Shared Styles */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+        transition: background-color 0.5s, color 0.5s;
+      }
+
+      .heading {
+        display: flex;
+        justify-content: center;
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        transition: text-shadow 0.5s ease-in-out;
+      }
+
+      .heading:hover {
+        text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+      }
+
+      #darkModeButton {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        padding: 10px;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1.5em;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      /* Dark Mode Styling */
+      body.dark-mode {
+        background-color: #333;
+        color: #fff;
+      }
+
+      #darkModeButton.dark-mode::after {
+        content: "🌙";
+        margin-left: 5px;
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 768px) {
+        .container {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .card {
+          width: 100%;
+        }
+
+        .heading {
+          font-size: 1.5em;
+        }
+
+        #darkModeButton {
+          font-size: 1em;
+        }
+      }
+
+      /* Non-Responsive Styles (Above 768px) */
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-top: 20px;
+        gap: 20px;
+      }
+
+      .card {
+        width: 200px;
+        height: 200px;
+        background-color: #f8f8f8;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 15px;
+        padding: 20px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s ease-in-out, background-color 0.5s;
+        /* border: 1px solid #3498db; */
+      }
+
+      .card h2 {
+        transition: color 0.3s ease-in-out;
+      }
+
+      .card:hover h2 {
+        color: #3498db;
+      }
+
+      .card:hover {
+        transform: scale(1.1);
+        background-color: #e0e0e0;
+      }
+
+      /* About Us Section Styling */
+      .about-us {
+        margin: 50px auto;
+        max-width: 1000px;
+        text-align: center;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .about-us h2 {
+        color: #3498db;
+      }
+
+      .about-us p {
+        color: #333;
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+
+      /* Contact Icons */
+      .contact-icons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      .contact-icons a {
+        color: #333;
+        font-size: 24px;
+      }
+      /* Bubble Animation */
+      .bubble {
+        position: absolute;
+        background-color: #87ceeb; /* Light Sky Blue */
+        opacity: 0.6;
+        border-radius: 50%;
+        animation: bubbleAnimation 3s linear infinite;
+        pointer-events: none; /* Make sure it doesn't interfere with buttons */
+      }
+
+      @keyframes bubbleAnimation {
+        0% {
+          transform: translateY(0) scale(1);
+        }
+        50% {
+          transform: translateY(-100px) scale(1.2);
+        }
+        100% {
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .bubble1 {
+        width: 20px;
+        height: 20px;
+        top: calc(100% - 50px);
+        left: 20%;
+      }
+
+      .bubble2 {
+        width: 15px;
+        height: 15px;
+        top: calc(100% - 120px);
+        left: 50%;
+      }
+
+      .bubble3 {
+        width: 25px;
+        height: 25px;
+        top: calc(100% - 200px);
+        left: 80%;
+      }
+
+      .bubble4 {
+        width: 18px;
+        height: 18px;
+        top: calc(100% - 300px);
+        left: 30%;
+      }
+
+      .bubble5 {
+        width: 22px;
+        height: 22px;
+        top: calc(100% - 500px);
+        left: 70%;
+      }
+      .cursor {
+        width: 45px;
+        height: 45px;
+        background-color: white;
+        position: absolute;
+        /* transition: all linear 0.3s ; */
+        mix-blend-mode: difference;
+        border-radius: 50px;
+        animation: cursorAnimation 4s ease infinite;
+      }
+      @keyframes cursorAnimation {
+        0% {
+          transform: translateX(0) scale(1);
+        }
+        50% {
+          transform: translateX(-100px) scale(1.2);
+        }
+        100% {
+          transform: translateX(100px) scale(1);
+        }
+      }
+      .container {
+        width: 100%;
+        height: 100%;
+        /* background-color: black; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+      .h1 {
+        color: white;
+        font-size: 10vw;
+        font-weight: 900;
+      }
+      .qunatumimg {
+        width: 120%;
+        height: 120%;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="cursor"></div>
+      <h1 class="heading">Welcome To Coder</h1>
+    </div>
+
+    <button id="darkModeButton" onclick="toggleDarkMode()">🌙</button>
+
+    <div class="container">
+      <!-- First Card with Image -->
+      <a href="index2.html">
+        <div class="card">
+          <img class="qunatumimg" src="ser.jpeg" alt=" important questions" />
+        </div>
+      </a>
+
+      <!-- Remaining Cards -->
+      <a href="index3.html">
+        <div class="card">
+          <h2>Notes</h2>
+          <!-- Content for Quantum Series card -->
+        </div>
+      </a>
+      <a href="index4.html"></a>
+      <div class="card">
+        <img
+          class="qunatumimg"
+          src="maxresdefault.jpg"
+          alt=" important questions"
+        />
+      </div>
+      <a href="index5.html">
+        <div class="card">
+          <img class="qunatumimg" src="th.jpeg" alt="Previous year papers " />
+        </div>
+      </a>
+    </div>
+    <div class="bubble bubble1"></div>
+    <div class="bubble bubble2"></div>
+    <div class="bubble bubble3"></div>
+    <div class="bubble bubble4"></div>
+    <div class="bubble bubble5"></div>
+
+    <!-- About Us Section -->
+    <div class="about-us">
+      <h2>About Us</h2>
+      <p>
+        Welcome to Student ChatSkpy, created by Sagar and Priyanshu! We're here
+        to provide quality educational resources for your academic success.
+        Explore our site for papers, the Quantum Series, and assignments. For
+        questions or feedback, reach out to us. Thanks for choosing Student
+        ChatSkpy!
+        </p>
+
+        <!-- Contact Icons -->
+      </p>
+
+      <div class="contact-icons">
+        <a href="tel:7905589843"><i class="fas fa-phone"></i></a>
+        <a href="mailto:sagar.kushwaha.inn@gmail.com"
+          ><i class="fas fa-envelope"></i
+        ></a>
+        <a
+          href="https://www.linkedin.com/in/sagar-kushwaha-29a34a282/"
+          target="_blank"
+          ><i class="fab fa-linkedin"></i
+        ></a>
+      </div>
+    </div>
+
+    <script>
+      function toggleDarkMode() {
+        const isDarkMode = document.body.classList.toggle("dark-mode");
+        document.querySelectorAll(".card").forEach((card) => {
+          card.classList.toggle("dark-mode", isDarkMode);
+        });
+        document.querySelectorAll(".about-us").forEach((aboutUs) => {
+          aboutUs.classList.toggle("dark-mode", isDarkMode);
+        });
+        document.getElementById("darkModeButton").textContent = isDarkMode
+          ? "☀"
+          : "🌙";
+      }
+    </script>
+    <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
+    <script
+      src="https://mediafiles.botpress.cloud/c547eef0-085b-4fe2-b250-f9818e61ddf2/webchat/config.js"
+      defer
+    ></script>
+  </body>
+</html>

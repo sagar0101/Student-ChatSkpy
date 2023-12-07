@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navbar with Buttons</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      color: #343a40;
+      margin: 0;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+
+    .main-div {
+      display: flex;
+      flex-direction: column; /* Adjusted to stack columns on small screens */
+      width: 100%;
+      height: 100%;
+      margin: 20px auto;
+    }
+
+    .left-div,
+    .right-div {
+      flex: 1;
+      padding: 20px;
+      border-radius: 5px;
+    }
+
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .button {
+      cursor: pointer;
+      padding: 10px;
+     
+      background-color: whitesmoke;
+      color: #007bff;
+      font-size: 14px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      border: 1px solid pink;
+    }
+
+    .button:hover {
+      background-color: #007bff;
+      color: #fff;
+      box-shadow: 0 0 10px black;
+      
+    }
+
+    .image {
+      width: 100%;
+      border-radius: 5px;
+    }
+
+    .dark-mode {
+      background-color: #343a40;
+      color: #fff;
+    }
+
+    .btn {
+      width: 100%;
+    }
+
+    @media only screen and (min-width: 600px) {
+      .main-div {
+        flex-direction: row; /* Adjusted to display in rows on larger screens */
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="navbar">
+    <!-- Home Button -->
+    <a href="index1.html"> <button id="homeBtn">🏠</button></a>
+
+    <!-- Dark Mode Button -->
+    <button class="button" onclick="toggleDarkMode()">🌙</button>
+  </div>
+
+  <div class="main-div">
+    <div class="left-div">
+      <div class="button-container">
+        <!-- Six Buttons in Left Div -->
+        <a href="btech-cs-5-sem-data-analytics-kcs051-2021.pdf">
+          <button class="button btn">Data-Analytics-2021</button>
+        </a>
+        <a href="btech-cs-5-sem-data-analytics-kcs051-2022.pdf">
+          <button class="button btn">Data-Analytics-2022</button>
+        </a>
+        <a href="btech-cs-5-sem-data-analytics-kcs051-2023.pdf">
+          <button class="button btn">Data-Analytics-2023</button>
+        </a>
+        <button class="button">Button 4</button>
+        <button class="button">Button 5</button>
+        <button class="button">Button 6</button>
+      </div>
+    </div>
+
+    <div class="right-div">
+      <img class="image" src="" alt="">
+    </div>
+  </div>
+
+  <script>
+    function toggleDarkMode() {
+      const body = document.body;
+      body.classList.toggle('dark-mode');
+    }
+
+    function goToHome() {
+      // Implement logic to navigate to the home section
+      console.log("Navigating to the home section");
+    }
+  </script>
+  <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
+  <script src="https://mediafiles.botpress.cloud/c547eef0-085b-4fe2-b250-f9818e61ddf2/webchat/config.js" defer></script>
+
+</body>
+
+</html>
